@@ -126,12 +126,12 @@ def index():
     explore_route_url = build_google_maps_route_url(places)
     map_html = map_object._repr_html_()
 
-    return render_template(
-        "index.html",
-        places=places,
-        map_html=map_html,
-        explore_route_url=explore_route_url,
-    )
+return render_template(
+    "index.html",
+    places=places,
+    map_html=map_html,
+    explore_route_url=explore_route_url,
+)
 
 
 if __name__ == "__main__":
