@@ -23,7 +23,7 @@ places = [
         "description": "จุดเริ่มต้นของการเดินทางในจังหวัดกำแพงเพชร เพื่อเตรียมพลังก่อนลุยทริปธรรมชาติอย่างเต็มที่",
         "lat": 16.462563346635413,
         "lon": 99.51859916573929,
-        "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=80&w=800",
+        "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=800&q=80",
         "google_maps_url": "https://www.google.com/maps/dir/?api=1&destination=16.462563346635413,99.51859916573929",
     },
     {
@@ -79,7 +79,9 @@ def build_google_maps_route_url(route_points):
         "destination": f"{destination['lat']},{destination['lon']}",
     }
     if waypoints:
-        params["waypoints"] = "|".join(f"{point['lat']},{point['lon']}" for point in waypoints)
+        params["waypoints"] = "|".join(
+            f"{point['lat']},{point['lon']}" for point in waypoints
+        )
 
     return "https://www.google.com/maps/dir/?" + urlencode(params)
 
@@ -126,13 +128,15 @@ def index():
     explore_route_url = build_google_maps_route_url(places)
     map_html = map_object._repr_html_()
 
-return render_template(
-    "index.html",
-    places=places,
-    map_html=map_html,
-    explore_route_url=explore_route_url,
-)
+    # แก้ไขจุดเยื้อง (Indentation) ให้กลับเข้ามาทำงานอยู่ภายใต้ฟังก์ชัน index() แล้ว
+    return render_template(
+        "index.html",
+        places=places,
+        map_html=map_html,
+        explore_route_url=explore_route_url,
+    )
 
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5003)
+    
